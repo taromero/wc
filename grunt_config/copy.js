@@ -15,7 +15,7 @@ module.exports = {
       expand: true,
       cwd: '.tmp/public',
       src: ['**/*'],
-      dest: 'public'
+      dest: 'www'
     }
     ]
   }
