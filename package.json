@@ -6,9 +6,16 @@
     "dependencies": {
         "sails": "0.9.9",
         "grunt": "0.4.1",
-        "sails-disk": "~0.9.0",
         "ejs": "0.8.4",
-        "optimist": "0.3.4"
+        "load-grunt-tasks": "~0.2.0",
+        "grunt-mocha-test": "0.8.1",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-copy": "~0.4.1",
+        "grunt-contrib-cssmin": "~0.7.0",
+        "grunt-contrib-uglify": "~0.2.0",
+        "grunt-contrib-watch": "~0.5.2",
+        "grunt-sails-linker": "0.9.5"
     },
     "scripts": {
         "start": "node app.js",
