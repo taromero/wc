@@ -1,0 +1,2 @@
+# wc
+### a Sails application
