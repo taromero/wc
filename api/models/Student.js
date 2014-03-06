@@ -1,3 +1,5 @@
+var profile_helper = require('./profile_helper')
+
 module.exports = {
 
   attributes: {
@@ -7,6 +9,15 @@ module.exports = {
     surname: 'string',
     gender: 'string',
     birth_date: 'date'
+  },
+
+  beforeCreate: function(attrs, next) {
+    profile_helper.encryptPassword(attrs)
+    .catch(function(err) {
+      next(err)
+    }).done(function() {
+      next()
+    })
   }
 
 };
