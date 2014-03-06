@@ -5,7 +5,8 @@ module.exports = {
     password: 'string',
     name: 'string',
     surname: 'string',
-    gender: 'string'
+    gender: 'string',
+    birth_date: 'date'
   }
 
 };
