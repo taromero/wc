@@ -1,4 +1,4 @@
-var profile_helper = require('profile_helper')
+var profile_helper = require('../helpers/profile_helper')
 var _ = require('underscore')
 var login_service = require('../services/login_service')
 
