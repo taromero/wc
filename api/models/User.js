@@ -1,3 +1,5 @@
+var profile_helper = require('./profile_helper')
+
 module.exports = {
 
   attributes: {
