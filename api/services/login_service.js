@@ -20,11 +20,11 @@ function comparePasswords(plain_text_password, user) {
 }
 
 function checkUserExists(plain_text_password, user) {
-  user ? user : q.reject()
+  if(!user) throw new Error()
   return [plain_text_password, user]
 }
 
 function checkPasswordMatch(rightCredentials, user) {
-  rightCredentials || q.reject()
+  if(!rightCredentials) throw new Error()
   return user
 }

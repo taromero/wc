@@ -11,6 +11,8 @@
         "q": "1.0.0",
         "chai": "1.8.1",
         "underscore": "1.6.0",
+        "mocha-as-promised": "2.0.0",
+        "chai-as-promised": "4.1.1",
         "load-grunt-tasks": "~0.2.0",
         "grunt-mocha-test": "0.8.1",
         "grunt-contrib-clean": "~0.5.0",
