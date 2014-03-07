@@ -4,7 +4,6 @@ module.exports = function(grunt, grunt_config) {
       if(options) {
         grunt_config[cfgName] = require('./grunt_config/' + cfgName + '.js')(options)
       } else {
-        debugger
         grunt_config[cfgName] = require('./grunt_config/' + cfgName + '.js')
       }
     },
