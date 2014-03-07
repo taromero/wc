@@ -12,7 +12,10 @@ module.exports = {
   },
 
   beforeCreate: function(attrs, next) {
-    profile_helper.encryptPassword(attrs)
+    profile_helper.encryptPassword(attrs.password)
+    .then(function assignEncryptedPasswordToUser(encrypted_password) {
+      attrs.password = encrypted_password
+    })
     .catch(function(err) {
       next(err)
     }).done(function() {

@@ -2,13 +2,12 @@ describe('profile_helper', function() {
   var plain_text_password, attrs
 
   describe('#encryptPassword', function() {
-    beforeEach(function(done) {
+    beforeEach(function() {
       plain_text_password = '1234'
-      attrs = { password: plain_text_password }
-      profile_helper.encryptPassword(attrs).then(done)
     })
-    it('should encrypt password', function() {
-      expect(attrs.password).not.to.equal(plain_text_password)
+    it('should encrypt password', function(done) {
+      var encrypt = profile_helper.encrypt(plain_text_password)
+      encrypt.should.not.become(plain_text_password).notify(done)
     })
   })
   describe('#comparePasswords', function() {

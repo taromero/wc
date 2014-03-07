@@ -15,11 +15,13 @@ module.exports = {
   }
 }
 
-function respondInvalidEmailOrPassword() {
-  res.json({ error: 'Invalid email or password' }, 400)
+function respondInternalError() {
+  req.session.user = null
+  res.json({ error: 'Internal error' }, 500)
 }
 
 function respondInvalidEmailOrPassword() {
+  req.session.user = null
   res.json({ error: 'Invalid email or password' }, 400)
 }
 
