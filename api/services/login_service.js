@@ -1,51 +1,30 @@
 var q = require('q')
 var _ = require('underscore')
+var profile_helper = require('../helpers/profile_helper')
 
-module.exports = function(req, res) {
-  return {
-    login: function(user) {
-      var defer = q.defer()
-      defer.resolve(user)
-      return defer.promise.then(checkUserExists)
-      .catch(respondInvalidEmailOrPassword)
-      .then(comparePasswords(req))
-      .then(checkPasswordMatch)
-      .catch(respondInvalidEmailOrPassword)
-      .then(addUserToSession(user))
-    }
+module.exports = {
+  // output: rigthCredentials ? user : promise_rejection
+  login: function(plain_text_password, user) {
+    var defer = q.defer()
+    defer.resolve([plain_text_password, user])
+    return defer.promise
+    .spread(checkUserExists)
+    .spread(comparePasswords)
+    .spread(checkPasswordMatch)
   }
-  function comparePasswords(req) {
-    return _.bind(_comparePasswords, { req: req })
-  }
+}
 
-  function _comparePasswords(user) {
-    return profile_helper.comparePasswords(this.req.body.password, user.password)
-  }
+function comparePasswords(plain_text_password, user) {
+  var match = profile_helper.comparePasswords(plain_text_password, user.password)
+  return [match, user]
+}
 
-  function checkUserExists(user) {
-    return user ? user : q.reject()
-  }
+function checkUserExists(plain_text_password, user) {
+  user ? user : q.reject()
+  return [plain_text_password, user]
+}
 
-  function checkPasswordMatch(rightCredentials) {
-    rightCredentials || q.reject()
-  }
-
-  function respondInvalidEmailOrPassword() {
-    res.json({ error: 'Invalid email or password' }, 400)
-  }
-
-  function respondInternalError() {
-    res.json({ error: 'Internal error' }, 500)
-  }
-
-  function addUserToSession(user) {
-    return _.bind(_addUserToSession, { user: user })
-  }
-
-  function _addUserToSession() {
-    req.session.user = this.user.id
-    res.json(this.user, 201)
-    debugger
-    return res
-  }
+function checkPasswordMatch(rightCredentials, user) {
+  rightCredentials || q.reject()
+  return user
 }
