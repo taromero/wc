@@ -1,13 +1,3 @@
-var bcrypt = require('bcrypt')
-var q = require('q')
-var chai = require('chai')
-var expect = chai.expect
-var should = chai.should()
-require("mocha-as-promised")()
-var chaiAsPromised = require("chai-as-promised")
-chai.use(chaiAsPromised)
-var login_service = require('../services/login_service')
-
 describe('login_service', function() {
   describe('#login', function() {
     var login
