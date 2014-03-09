@@ -10,6 +10,9 @@ module.exports = {
     gender: 'string',
     birth_date: 'date',
 
+    validatePassword: function(password) {
+      return profile_helper.comparePasswords(this.password, password)
+    },
     toJSON: function() {
       var obj = this.toObject()
       delete obj.password // Remove the password object value
@@ -18,7 +21,7 @@ module.exports = {
   },
 
   beforeCreate: function(attrs, next) {
-    profile_helper.encryptPassword(attrs.password)
+    profile_helper.encrypt(attrs.password)
     .then(function assignEncryptedPasswordToUser(encrypted_password) {
       attrs.password = encrypted_password
     })
@@ -29,4 +32,4 @@ module.exports = {
     })
   }
 
-};
+}

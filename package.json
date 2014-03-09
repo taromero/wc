@@ -17,6 +17,7 @@
         "chai-as-promised": "4.1.1",
         "passport": "0.2.0",
         "passport-local": "1.0.0",
+        "barnacle": "0.0.4",
         "load-grunt-tasks": "~0.2.0",
         "grunt-mocha-test": "0.8.1",
         "grunt-contrib-clean": "~0.5.0",

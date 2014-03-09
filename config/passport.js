@@ -1,6 +1,6 @@
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
-var profile_helper = require('../api/helpers/profile_helper')
+var ph = require('../api/helpers/passport_helper')
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -8,36 +8,16 @@ passport.use(new LocalStrategy({
   },
   function(email, password, done) {
     User.findOne({ email: email })
-    .then(checkUserExists)
-    .then(checkPasswordMatch)
-    .fail(function(err) {
-      if (err) {
-        done(err)
-      } else {
-        done(null, false, { message: 'Incorrect email or password' })
-      }
-    }).done()
+      .then(ph.checkUserExists)
+      .then(ph.checkPassword(password))
+      .then(ph.respondWithUser(done))
+      .fail(ph.respondWithAuthError(done))
+      .done()
   }
 ))
 
-function checkUserExists(user) {
-  if (!user) { throw new Error(null) }
-  return [password, user.password]
-}
-
-function checkPasswordMatch(user, password) {
-  return profile_helper.comparePasswords(user.password, password).then(function(match) {
-    debugger
-    if (!match) {
-      throw new Error(null)
-    } else {
-      done(null, user)
-    }
-  })
-}
-
 passport.serializeUser(function(user, done) {
-  done(null, user[0].id)
+  done(null, user.id)
 })
 
 passport.deserializeUser(function(id, done) {
