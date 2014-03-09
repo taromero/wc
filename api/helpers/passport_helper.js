@@ -1,5 +1,3 @@
-var curry = require('curry')
-
 module.exports = {
   checkUserExists: function(user) {
     if (!user) { throw new Error(null) }

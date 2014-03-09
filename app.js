@@ -1,4 +1,6 @@
-var local_cfg = require('./config/local')
+local_cfg = require('./config/local')
+passport = require('passport')
+curry = require('curry')
 
 if(local_cfg.log_level == 'debug') {
   // Start sails and pass it command line arguments

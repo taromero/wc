@@ -1,4 +1,3 @@
-var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var ph = require('../api/helpers/passport_helper')
 
