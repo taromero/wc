@@ -1,21 +1,23 @@
+var curry = require('curry')
+
 module.exports = {
   checkUserExists: function(user) {
     if (!user) { throw new Error(null) }
     return user
   },
   checkPassword: function(password) {
-    return _.bind(_checkPassword, { password: password })
+    return curry(_checkPassword)(password)
   },
   respondWithUser: function(done) {
-    return _.bind(_respondWithUser, { done: done })
+    return curry(_respondWithUser)(done)
   },
   respondWithAuthError: function(done) {
-    return _.bind(_respondWithAuthError, { done: done })
+    return curry(_respondWithAuthError)(done)
   }
 }
 
-function _checkPassword(user) {
-  return user.validatePassword(this.password).then(function(match) {
+function _checkPassword(password, user) {
+  return user.validatePassword(password).then(function(match) {
     if (!match) {
       var error = new Error(null)
       error.type = 'auth_error'
@@ -26,14 +28,14 @@ function _checkPassword(user) {
   })
 }
 
-function _respondWithUser(user) {
-  this.done(null, user)
+function _respondWithUser(done, user) {
+  done(null, user)
 }
 
-function _respondWithAuthError(err) {
+function _respondWithAuthError(done, err) {
   if (err.type == 'auth_error') {
-    this.done(null, false, { message: 'Incorrect email or password' })
+    done(null, false, { message: 'Incorrect email or password' })
   } else {
-    this.done(err)
+    done(err)
   }
 }
