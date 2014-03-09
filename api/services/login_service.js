@@ -15,7 +15,7 @@ module.exports = {
 }
 
 function comparePasswords(plain_text_password, user) {
-  var match = profile_helper.comparePasswords(plain_text_password, user.password)
+  var match = profile_helper.comparePasswords(user.password, plain_text_password)
   return [match, user]
 }
 

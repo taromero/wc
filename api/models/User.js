@@ -8,7 +8,13 @@ module.exports = {
     name: 'string',
     surname: 'string',
     gender: 'string',
-    birth_date: 'date'
+    birth_date: 'date',
+
+    toJSON: function() {
+      var obj = this.toObject()
+      delete obj.password // Remove the password object value
+      return obj
+    }
   },
 
   beforeCreate: function(attrs, next) {

@@ -11,3 +11,4 @@ should = chai.should()
 
 login_service = require('../../services/login_service')
 profile_helper = require('../../helpers/profile_helper')
+User = require('../../models/User')

@@ -5,6 +5,7 @@ module.exports = {
     },
     src: ['api/specs/helpers/globals.js',
           'api/specs/profile_helper_spec.js',
-          'api/specs/login_service_spec.js']
+          'api/specs/login_service_spec.js',
+          'api/specs/user_spec.js']
   }
 }
