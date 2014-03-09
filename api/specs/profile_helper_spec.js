@@ -1,41 +1,31 @@
-var profile_helper = require('../helpers/profile_helper')
-var chai = require('chai')
-var expect = chai.expect
-var bcrypt = require('bcrypt')
-var q = require('q')
-
 describe('profile_helper', function() {
+  var plain_text_password, attrs
+
   describe('#encryptPassword', function() {
-    var plain_text_password = '1234'
-    var attrs = { password: plain_text_password }
-    beforeEach(function(done) {
-      profile_helper.encryptPassword(attrs).then(done)
+    beforeEach(function() {
+      plain_text_password = '1234'
     })
-    it('should encrypt password', function() {
-      expect(attrs.password).not.to.equal(plain_text_password)
+    it('should encrypt password', function(done) {
+      var encrypt = profile_helper.encrypt(plain_text_password)
+      encrypt.should.not.become(plain_text_password).notify(done)
     })
   })
   describe('#comparePasswords', function() {
-    var compare
-    var plain_text_password = '1234'
-    var attrs = { password: plain_text_password }
+
     beforeEach(function() {
-      compare = profile_helper.encryptPassword(attrs).then(function() {
-        return q.all([
-          profile_helper.comparePasswords(plain_text_password, attrs.password),
-          profile_helper.comparePasswords(plain_text_password + 'a', attrs.password)
-        ])
-      }).then(function(matches) {
-        return matches
-      })
+      plain_text_password = '1234'
+      var hash = bcrypt.hashSync(plain_text_password, 8)
+      attrs = { password: hash }
     })
 
-    it('should be able to compare plain_text_password with encrypted_password', function(done) {
-      compare.spread(function(match_equals, match_non_equals) {
-        expect(match_equals).to.equal(true)
-        expect(match_non_equals).to.equal(false)
-      }).then(done)
-      .done()
+    it('should be return true for matching encrypted/unencrypted passwords', function(done) {
+      var compare_same = profile_helper.comparePasswords(attrs.password, plain_text_password)
+      compare_same.should.become(true).notify(done)
+    })
+
+    it('should be return false for unmatching encrypted/unencrypted passwords', function(done) {
+      var compare_different = profile_helper.comparePasswords(attrs.password, plain_text_password + 1)
+      compare_different.should.become(false).notify(done)
     })
 
   })

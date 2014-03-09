@@ -1,7 +1,10 @@
+var pe = require('pretty-error')
+var local_cfg = require('./local')
+
 /**
  * Default 500 (Server Error) middleware
  *
- * If an error is thrown in a policy or controller, 
+ * If an error is thrown in a policy or controller,
  * Sails will respond using this default error handler
  *
  * This middleware can also be invoked manually from a controller or policy:
@@ -28,7 +31,7 @@ module.exports[500] = function serverErrorOccurred(errors, req, res) {
     status: statusCode
   };
 
-  // Normalize a {String|Object|Error} or array of {String|Object|Error} 
+  // Normalize a {String|Object|Error} or array of {String|Object|Error}
   // into an array of proper, readable {Error}
   var errorsToDisplay = sails.util.normalizeErrors(errors);
   for (i in errorsToDisplay) {
@@ -42,7 +45,13 @@ module.exports[500] = function serverErrorOccurred(errors, req, res) {
       errorToLog = errorsToDisplay[i].stack;
     }
     sails.log.error('Server Error (500)');
-    sails.log.error(errorToLog);
+
+    if(local_cfg.log_level == 'debug') {
+      sails.log.error(errorToLog);
+    } else {
+      var pe = new PrettyError();
+      console.log(pe.render(errorsToDisplay[i].original ? errorsToDisplay[i].original : errorsToDisplay[i]));
+    }
 
     // Use original error if it exists
     errorToJSON = errorsToDisplay[i].original || errorsToDisplay[i].message;
@@ -69,7 +78,7 @@ module.exports[500] = function serverErrorOccurred(errors, req, res) {
   res.render(viewFilePath, result, function (err) {
     // If the view doesn't exist, or an error occured, just send JSON
     if (err) { return res.json(result, result.status); }
-    
+
     // Otherwise, if it can be rendered, the `views/500.*` page is rendered
     res.render(viewFilePath, result);
   });
