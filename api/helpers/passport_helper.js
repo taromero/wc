@@ -1,7 +1,6 @@
 module.exports = {
   checkUserExists: function(user) {
-    if (!user) { throw new Error(null) }
-    return user
+    return user || q.reject()
   },
   checkPassword: function(password) {
     return curry(_checkPassword)(password)
@@ -17,9 +16,7 @@ module.exports = {
 function _checkPassword(password, user) {
   return user.validatePassword(password).then(function(match) {
     if (!match) {
-      var error = new Error(null)
-      error.type = 'auth_error'
-      throw error
+      return q.reject()
     } else {
       return user
     }
@@ -31,9 +28,9 @@ function _respondWithUser(done, user) {
 }
 
 function _respondWithAuthError(done, err) {
-  if (err.type == 'auth_error') {
-    done(null, false, { message: 'Incorrect email or password' })
-  } else {
+  if (err) {
     done(err)
+  } else { //the promise was rejected
+    done(null, false, { message: 'Incorrect email or password' })
   }
 }

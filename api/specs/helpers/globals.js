@@ -9,5 +9,7 @@ chai.use(chaiAsPromised)
 expect = chai.expect
 should = chai.should()
 
-login_service = require('../../services/login_service')
+curry = require('curry')
+
+passport_helper = require('../../helpers/passport_helper')
 profile_helper = require('../../helpers/profile_helper')
