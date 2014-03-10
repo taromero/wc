@@ -18,7 +18,7 @@ module.exports.policies = {
     '*': true
   },
   UserController: {
-    '*': 'isAdmin',
+    // '*': 'isAdmin',
     // 'find': 'isAuthenticated'
     'find': true,
   }

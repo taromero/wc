@@ -11,8 +11,8 @@ angular.module('wc')
         templateUrl: "views/user.html",
         controller: "UserCtrl",
         resolve: {
-          users: function(dataService){
-            return dataService.findAllUsers()
+          users: function($resource) {
+            return $resource('/user/:id', { id: '@id' }).query()
           }
         },
       })
