@@ -11,5 +11,5 @@ should = chai.should()
 
 curry = require('curry')
 
-login_helper = require('../../helpers/login_helper')
+session_controller_helper = require('../../helpers/session_controller_helper')
 profile_helper = require('../../helpers/profile_helper')

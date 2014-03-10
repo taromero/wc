@@ -1,16 +1,17 @@
-var lh = require('../helpers/login_helper')
+var h = require('../helpers/session_controller_helper')
 
 module.exports = {
   login: function(req, res) {
     User.findOne({ email: req.body.email })
-      .then(lh.checkUserExists)
-      .then(lh.checkPassword(req.body.password))
-      .then(lh.respondWithUser(req, res))
-      .fail(lh.respondWithAuthError(res))
+      .then(h.checkUserExists)
+      .then(h.checkPassword(req.body.password))
+      .then(h.addUserToSession(req, res))
+      .then(h.respondWithUser(req, res))
+      .fail(h.respondWithAuthError(req, res))
       .done()
   },
   logout: function(req, res) {
-    req.logout()
-    res.respond(200, 'successful logout')
+    req.session.user = null
+    res.send(200, 'successful logout')
   }
 }
