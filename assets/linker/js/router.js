@@ -3,12 +3,17 @@
 angular.module('wc')
   .config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/user");
 
     $stateProvider
       .state('index', {
-        url: "/",
-        templateUrl: "views/main.html",
-        controller: "MainCtrl"
+        url: "/user",
+        templateUrl: "views/user.html",
+        controller: "UserCtrl",
+        resolve: {
+          users: function(dataService){
+            return dataService.findAllUsers()
+          }
+        },
       })
   })

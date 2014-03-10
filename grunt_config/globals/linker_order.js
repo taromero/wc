@@ -9,8 +9,13 @@ var jsFilesToInject = [
   'bower_components/jquery/jquery.min.js',
   'bower_components/angular/angular.min.js',
   'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+  'bower_components/angular-resource/angular-resource.min.js',
   'bower_components/angular-ui-router/release/angular-ui-router.min.js',
   'bower_components/localforage/dist/localforage.js',
+  'linker/js/app.js',
+  'linker/js/services/*.js',
+  'linker/js/router.js',
+  'linker/js/controllers/*.js',
   'linker/**/*.js'
 ];
 

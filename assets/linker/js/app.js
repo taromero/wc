@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module('wc', ['ui.router', "ui.bootstrap"])
+angular.module('wc', ['ngResource', 'ui.router', "ui.bootstrap"])

@@ -1,0 +1,28 @@
+<div>
+  <table class='table-striped table-bordered table-hover table-condensed activities-list tablesorter-bootstrap'>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Created</th>
+        <th>Edited</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ activity.createdAt | date: 'M-dd-yyyy hh:mm' }}</td>
+        <td>{{ activity.updatedAt | date: 'M-dd-yyyy hh:mm' }}</td>
+        <td>
+          <p>
+            <a class='btn btn-primary' ui-sref="user_edit({ id: user.id })">Edit</a>
+          </p>
+          <a class='btn btn-danger' ng-click="destroy(user)">Destroy</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

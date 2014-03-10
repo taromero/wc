@@ -11,14 +11,16 @@
 
 module.exports.policies = {
 
-  '*': 'isAuthenticated',
+  // '*': 'isAuthenticated',
+  '*': true,
   '/': true,
   SessionController: {
     '*': true
   },
   UserController: {
     '*': 'isAdmin',
-    'find': 'isAuthenticated'
+    // 'find': 'isAuthenticated'
+    'find': true,
   }
 
 }
