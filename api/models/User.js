@@ -9,6 +9,12 @@ module.exports = {
     surname: 'string',
     gender: 'string',
     birth_date: 'date',
+    //Student
+    course_id: 'string',
+    //Profesor
+    subjects_ids: 'array', //array of subject_ids
+    //Person In Charge
+    courses_in_charge_of_ids: 'array',
 
     validatePassword: function(password) {
       return profile_helper.comparePasswords(this.password, password)
