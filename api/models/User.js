@@ -24,6 +24,9 @@ module.exports = {
       var obj = this.toObject()
       delete obj.password // Remove the password object value
       return obj
+    },
+    toSession: function() {
+      return { id: this.id, role: this.role }
     }
   },
 
