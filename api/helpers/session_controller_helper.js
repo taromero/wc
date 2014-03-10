@@ -28,6 +28,7 @@ function _checkPassword(password, user) {
 
 function _addUserToSession(req, res, user) {
   req.session.user = user.toSession()
+  return user
 }
 
 function _respondWithUser(req, res, user) {
