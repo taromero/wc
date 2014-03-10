@@ -36,7 +36,7 @@ module.exports = {
       attrs.password = encrypted_password
     }).then(function checkRole() {
       if(!['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT'].contains(attrs.role)) {
-        q.reject('bad role selection')
+        q.reject(new Error('bad role selection'))
       }
     })
     .catch(function(err) {
