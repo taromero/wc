@@ -1,4 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy
+var passport = require('passport')
 var ph = require('../api/helpers/passport_helper')
 
 passport.use(new LocalStrategy({
