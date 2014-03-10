@@ -5,11 +5,11 @@ module.exports = {
   checkPassword: function(password) {
     return curry(_checkPassword)(password)
   },
-  respondWithUser: function(done) {
-    return curry(_respondWithUser)(done)
+  respondWithUser: function(req, res) {
+    return curry(_respondWithUser)(req, res)
   },
-  respondWithAuthError: function(done) {
-    return curry(_respondWithAuthError)(done)
+  respondWithAuthError: function(res) {
+    return curry(_respondWithAuthError)(res)
   }
 }
 
@@ -23,14 +23,16 @@ function _checkPassword(password, user) {
   })
 }
 
-function _respondWithUser(done, user) {
-  done(null, user)
+function _respondWithUser(req, res, user) {
+  req.session.user = { id: user.id, role: user.role }
+  res.send(200, 'successful login')
 }
 
-function _respondWithAuthError(done, err) {
+function _respondWithAuthError(res, err) {
   if (err) {
-    done(err)
+    res.send(500, err)
+    throw err
   } else { //the promise was rejected
-    done(null, false, { message: 'Incorrect email or password' })
+    res.send(401, 'Incorrect email or password')
   }
 }
