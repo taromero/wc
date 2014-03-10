@@ -4,7 +4,7 @@ module.exports = {
 
   	year: 'integer',
     division: 'string',
-    person_in_charge_id: 'string'
+    preceptor_id: 'string'
 
   }
 
