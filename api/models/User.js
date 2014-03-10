@@ -35,8 +35,8 @@ module.exports = {
     .then(function assignEncryptedPasswordToUser(encrypted_password) {
       attrs.password = encrypted_password
     }).then(function checkRole() {
-      if(!['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT'].contains(attrs.role)) {
-        q.reject(new Error('bad role selection'))
+      if(['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT'].indexOf(attrs.role) == -1) {
+        return q.reject(new Error('bad role selection'))
       }
     })
     .catch(function(err) {
