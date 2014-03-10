@@ -1,4 +1,4 @@
-describe('passport_helper', function() {
+describe('session_controller_helper', function() {
 
   describe('#checkUserExists', function() {
 
@@ -7,7 +7,7 @@ describe('passport_helper', function() {
     context('user exists', function() {
       beforeEach(function() {
         user = {}
-        promise = q(passport_helper.checkUserExists(user))
+        promise = q(session_controller_helper.checkUserExists(user))
       })
       it('should return user', function(done) {
         promise.should.become(user).notify(done)
@@ -17,7 +17,7 @@ describe('passport_helper', function() {
     context('user exists', function() {
       beforeEach(function() {
         user = null
-        promise = passport_helper.checkUserExists(user)
+        promise = session_controller_helper.checkUserExists(user)
       })
       it('should reject the promise', function(done) {
         promise.should.be.rejected.notify(done)
@@ -36,7 +36,7 @@ describe('passport_helper', function() {
         user.validatePassword = function() {
           return q(true)
         }
-        promise = q(passport_helper.checkPassword(password)(user))
+        promise = q(session_controller_helper.checkPassword(password)(user))
       })
       it('should return user', function(done) {
         promise.should.become(user).notify(done)
@@ -49,7 +49,7 @@ describe('passport_helper', function() {
         user.validatePassword = function() {
           return q(false)
         }
-        promise = q(passport_helper.checkPassword(password)(user))
+        promise = q(session_controller_helper.checkPassword(password)(user))
       })
       it('should return user', function(done) {
         promise.should.be.rejected.notify(done)

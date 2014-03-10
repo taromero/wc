@@ -23,5 +23,5 @@ module.exports.routes = {
     view: 'home/index'
   }
   , 'post /login': 'SessionController.login'
-  , 'post /logout': 'SessionController.logout'
+  , '/logout': 'SessionController.logout'
 }

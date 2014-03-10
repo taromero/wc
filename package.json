@@ -15,8 +15,6 @@
         "pretty-error": "*",
         "mocha-as-promised": "2.0.0",
         "chai-as-promised": "4.1.1",
-        "passport": "0.2.0",
-        "passport-local": "1.0.0",
         "barnacle": "0.0.4",
         "curry": "1.2.0",
         "load-grunt-tasks": "~0.2.0",

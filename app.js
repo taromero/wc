@@ -1,5 +1,4 @@
 local_cfg = require('./config/local')
-passport = require('passport')
 curry = require('curry')
 q = require('q')
 bcrypt = require('bcrypt')

@@ -9,6 +9,7 @@ module.exports = {
     surname: 'string',
     gender: 'string',
     birth_date: 'date',
+    role: 'string',
     //Student
     course_id: 'string',
     //Profesor
@@ -23,6 +24,9 @@ module.exports = {
       var obj = this.toObject()
       delete obj.password // Remove the password object value
       return obj
+    },
+    toSession: function() {
+      return { id: this.id, role: this.role }
     }
   },
 
@@ -30,6 +34,10 @@ module.exports = {
     profile_helper.encrypt(attrs.password)
     .then(function assignEncryptedPasswordToUser(encrypted_password) {
       attrs.password = encrypted_password
+    }).then(function checkRole() {
+      if(['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT'].indexOf(attrs.role) == -1) {
+        return q.reject(new Error('bad role selection'))
+      }
     })
     .catch(function(err) {
       next(err)
