@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('wc').controller('UserCreateCtrl', function ($rootScope, $scope, $resource) {
+angular.module('wc').controller('UserCreateCtrl', function ($rootScope, $scope, daoFactory) {
   $scope.save = function() {
     if($scope.user && $scope.user.id) {
-      $resource('user/:id', { id: '@id' }, { update: { method: 'PUT' } }).update($scope.user)
+      daoFactory.User.update($scope.user)
     } else {
-      $resource('user/:id', { id: '@id' }).save($scope.user)
+      daoFactory.User.save($scope.user)
     }
   }
 })

@@ -9,8 +9,8 @@ angular.module('wc')
         templateUrl: "views/user_list.html",
         controller: "UserListCtrl",
         resolve: {
-          users: function($resource) {
-            return $resource('/user/:id', { id: '@id' }).query()
+          users: function(daoFactory) {
+            return daoFactory.User.query()
           }
         },
       })
@@ -24,8 +24,8 @@ angular.module('wc')
         templateUrl: "views/user_create.html",
         controller: "UserEditCtrl",
         resolve: {
-          user: function($resource, $stateParams) {
-            return $resource('/user/:id', { id: '@id' }).get({ id: $stateParams.id })
+          user: function(daoFactory, $stateParams) {
+            return daoFactory.User.get({ id: $stateParams.id })
           }
         }
       })
