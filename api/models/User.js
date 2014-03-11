@@ -9,6 +9,8 @@ module.exports = {
     surname: 'string',
     gender: 'string',
     birth_date: 'date',
+    address: 'string',
+    phone: 'integer',
     role: 'string',
     //Student
     course_id: 'string',

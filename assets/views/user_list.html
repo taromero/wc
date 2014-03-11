@@ -1,10 +1,17 @@
 <div>
+  <div>
+    <a class='btn btn-primary' ui-sref="user_create">Create User</a>
+  </div>
   <table class='table-striped table-bordered table-hover table-condensed activities-list tablesorter-bootstrap'>
     <thead>
       <tr>
         <th>Id</th>
         <th>Email</th>
         <th>Role</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Birth</th>
         <th>Created</th>
         <th>Edited</th>
       </tr>
@@ -14,8 +21,12 @@
         <td>{{ user.id }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.role }}</td>
-        <td>{{ activity.createdAt | date: 'M-dd-yyyy hh:mm' }}</td>
-        <td>{{ activity.updatedAt | date: 'M-dd-yyyy hh:mm' }}</td>
+        <td>{{ user.name }} - {{ user.surname }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.birth }}</td>
+        <td>{{ activity.createdAt }}</td>
+        <td>{{ activity.updatedAt }}</td>
         <td>
           <p>
             <a class='btn btn-primary' ui-sref="user_edit({ id: user.id })">Edit</a>

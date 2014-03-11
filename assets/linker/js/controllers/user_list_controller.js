@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wc').controller('UserCtrl', function ($rootScope, $scope, $state, users) {
+angular.module('wc').controller('UserListCtrl', function ($rootScope, $scope, users) {
   $scope.users = users
 
   $scope.destroy = function(user) {
