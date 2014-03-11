@@ -19,4 +19,14 @@ angular.module('wc')
         templateUrl: "views/user_create.html",
         controller: "UserCreateCtrl"
       })
+      .state('user_edit', {
+        url: "/user/edit/:id",
+        templateUrl: "views/user_create.html",
+        controller: "UserEditCtrl",
+        resolve: {
+          user: function($resource, $stateParams) {
+            return $resource('/user/:id', { id: '@id' }).get({ id: $stateParams.id })
+          }
+        }
+      })
   })
