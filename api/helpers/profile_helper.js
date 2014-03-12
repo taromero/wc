@@ -1,3 +1,6 @@
+var q = require('q')
+var bcrypt = require('bcrypt')
+
 module.exports.encrypt = function(plain_text) {
   var defer = q.defer()
   bcrypt.hash(plain_text, 8, function(err, hash) {

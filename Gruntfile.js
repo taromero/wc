@@ -26,5 +26,7 @@ module.exports = function (grunt) {
   registerTask('linkAssets')
   registerTask('build')
   registerTask('prod')
+  registerTask('create_sample_data')
+  registerTask('clear_db')
 
 };
