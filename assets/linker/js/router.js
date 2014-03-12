@@ -7,9 +7,9 @@ angular.module('wc')
       .state('user_list', {
         url: "/user",
         templateUrl: "views/user_list.html",
-        controller: "UserListCtrl",
+        controller: "ListCtrl",
         resolve: {
-          users: function(daoFactory) {
+          collection: function(daoFactory) {
             return daoFactory.User.query()
           }
         },
