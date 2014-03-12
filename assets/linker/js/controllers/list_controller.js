@@ -4,11 +4,10 @@ angular.module('wc').controller('ListCtrl', function ($rootScope, $scope, collec
   $scope.collection = collection
 
   $scope.destroy = function(item) {
-    var _item = item
     item.$delete().then(function() {
-      var index = $scope.users.indexOf(item)
-      $scope.collection.splice(_item, 1)
-      $rootScope.alert = { msg: 'user: ' + _item.id + ' deleted!', type: 'info' }
+      var index = $scope.collection.indexOf(item)
+      $scope.collection.splice(index, 1)
+      $rootScope.alert = { msg: 'user: ' + item.id + ' deleted!', type: 'info' }
     })
   }
 })

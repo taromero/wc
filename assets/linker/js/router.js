@@ -17,15 +17,29 @@ angular.module('wc')
       .state('user_create', {
         url: "/user/create",
         templateUrl: "views/user_create.html",
-        controller: "UserCreateCtrl"
+        controller: "CreateCtrl",
+        resolve: {
+          Model: function(daoFactory) {
+            return daoFactory.User
+          },
+          model_name: function() {
+            return 'user'
+          }
+        }
       })
       .state('user_edit', {
         url: "/user/edit/:id",
         templateUrl: "views/user_create.html",
-        controller: "UserEditCtrl",
+        controller: "EditCtrl",
         resolve: {
-          user: function(daoFactory, $stateParams) {
+          model_instance: function(daoFactory, $stateParams) {
             return daoFactory.User.get({ id: $stateParams.id })
+          },
+          Model: function(daoFactory) {
+            return daoFactory.User
+          },
+          model_name: function() {
+            return 'user'
           }
         }
       })
