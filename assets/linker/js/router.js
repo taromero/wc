@@ -9,8 +9,10 @@ angular.module('wc')
         templateUrl: "views/user_list.html",
         controller: "ListCtrl",
         resolve: {
-          collection: function(daoFactory) {
-            return daoFactory.User.query()
+          config: function(daoFactory) {
+            return {
+              collection: daoFactory.User.query()
+            }
           }
         },
       })
@@ -19,11 +21,11 @@ angular.module('wc')
         templateUrl: "views/user_create.html",
         controller: "CreateCtrl",
         resolve: {
-          Model: function(daoFactory) {
-            return daoFactory.User
-          },
-          model_name: function() {
-            return 'user'
+          config: function(daoFactory) {
+            return {
+              Model: daoFactory.User,
+              model_name: 'user'
+            }
           }
         }
       })
@@ -32,14 +34,12 @@ angular.module('wc')
         templateUrl: "views/user_create.html",
         controller: "EditCtrl",
         resolve: {
-          model_instance: function(daoFactory, $stateParams) {
-            return daoFactory.User.get({ id: $stateParams.id })
-          },
-          Model: function(daoFactory) {
-            return daoFactory.User
-          },
-          model_name: function() {
-            return 'user'
+          config: function(daoFactory, $stateParams) {
+            return {
+              model_instance: daoFactory.User.get({ id: $stateParams.id }),
+              Model: daoFactory.User,
+              model_name: 'user'
+            }
           }
         }
       })

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('wc').controller('ListCtrl', function ($rootScope, $scope, collection) {
-  $scope.collection = collection
+angular.module('wc').controller('ListCtrl', function ($rootScope, $scope, config) {
+  $scope.collection = config.collection
 
   $scope.destroy = function(item) {
     item.$delete().then(function() {
