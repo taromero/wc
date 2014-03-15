@@ -6,7 +6,7 @@ angular.module('wc')
     $stateProvider
       .state('user_list', {
         url: "/user",
-        templateUrl: "views/user_list.html",
+        templateUrl: "views/user/user_list.html",
         controller: "ListCtrl",
         resolve: {
           config: function(daoFactory) {
@@ -18,7 +18,7 @@ angular.module('wc')
       })
       .state('user_create', {
         url: "/user/create",
-        templateUrl: "views/user_create.html",
+        templateUrl: "views/user/user_create.html",
         controller: "CreateCtrl",
         resolve: {
           config: function(daoFactory) {
@@ -31,7 +31,7 @@ angular.module('wc')
       })
       .state('user_edit', {
         url: "/user/edit/:id",
-        templateUrl: "views/user_create.html",
+        templateUrl: "views/user/user_create.html",
         controller: "EditCtrl",
         resolve: {
           config: function(daoFactory, $stateParams) {
