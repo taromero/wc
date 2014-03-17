@@ -13,7 +13,6 @@
         "underscore": "1.6.0",
         "sails-mongo": "0.9.7",
         "pretty-error": "*",
-        "mocha-as-promised": "2.0.0",
         "chai-as-promised": "4.1.1",
         "barnacle": "0.0.4",
         "curry": "1.2.0",
