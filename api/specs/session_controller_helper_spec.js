@@ -1,3 +1,5 @@
+session_controller_helper = require('../helpers/session_controller_helper')()
+
 describe('session_controller_helper', function() {
 
   describe('#checkUserExists', function() {
@@ -36,7 +38,8 @@ describe('session_controller_helper', function() {
         user.validatePassword = function() {
           return q(true)
         }
-        promise = q(session_controller_helper.checkPassword(password)(user))
+        session_controller_helper = require('../helpers/session_controller_helper')({ body: { password: password } })
+        promise = q(session_controller_helper.checkPassword(user))
       })
       it('should return user', function(done) {
         promise.should.become(user).notify(done)
@@ -49,7 +52,8 @@ describe('session_controller_helper', function() {
         user.validatePassword = function() {
           return q(false)
         }
-        promise = q(session_controller_helper.checkPassword(password)(user))
+        session_controller_helper = require('../helpers/session_controller_helper')({ body: { password: password } })
+        promise = q(session_controller_helper.checkPassword(user))
       })
       it('should return user', function(done) {
         promise.should.be.rejected.notify(done)
