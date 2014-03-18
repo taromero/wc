@@ -20,7 +20,7 @@ module.exports = {
     courses_in_charge_of_ids: 'array',
 
     validatePassword: function(password) {
-      return profile_helper.comparePasswords(this.password, password)
+      return profile_helper.comparePasswords(password, this.password)
     },
     toJSON: function() {
       var obj = this.toObject()
