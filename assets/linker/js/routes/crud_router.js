@@ -1,6 +1,6 @@
 'use strict'
 
-var modelNames = ['User', 'Course']
+var modelNames = ['User', 'Course', 'Subject']
 
 var firstToLowerCase = function(string) {
   return string.substr(0, 1).toLowerCase() + string.substr(1);
@@ -14,8 +14,10 @@ angular.module('wc')
   .config(function($stateProvider, $urlRouterProvider) {
 
     modelNames.forEach(function(modelName) {
+
       var model_name = to_(firstToLowerCase(modelName))
       var url_aux = 'views/' + model_name + '/' + model_name
+
       $stateProvider
         .state(model_name + '_list', {
           url: '/' + model_name,

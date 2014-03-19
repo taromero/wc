@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <a class='btn btn-primary' ui-sref="subject_create">Create Subject</a>
+  </div>
+  <table class='table-striped table-bordered table-hover table-condensed activities-list tablesorter-bootstrap'>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="subject in collection">
+        <td>{{ subject.id }}</td>
+        <td>{{ subject.name }}</td>
+        <td>{{ subject.description }}</td>
+        <td>{{ subject.course_id }}</td>
+        <td>
+          <p>
+            <a class='btn btn-primary' ui-sref="subject_edit({ id: subject.id })">Edit</a>
+          </p>
+          <a class='btn btn-danger' ng-click="destroy(subject)">Destroy</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
