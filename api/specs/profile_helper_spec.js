@@ -18,14 +18,14 @@ describe('profile_helper', function() {
       attrs = { password: hash }
     })
 
-    it('should be return true for matching encrypted/unencrypted passwords', function(done) {
+    it('should be return true for matching encrypted/unencrypted passwords', function() {
       var compare_same = profile_helper.comparePasswords(plain_text_password, attrs.password)
-      compare_same.should.become(true).notify(done)
+      return compare_same.should.become(true)
     })
 
-    it('should be return false for unmatching encrypted/unencrypted passwords', function(done) {
+    it('should be return false for unmatching encrypted/unencrypted passwords', function() {
       var compare_different = profile_helper.comparePasswords(plain_text_password + 1, attrs.password)
-      compare_different.should.become(false).notify(done)
+      return compare_different.should.become(false)
     })
 
   })

@@ -11,8 +11,8 @@ describe('session_controller_helper', function() {
         user = {}
         promise = q(session_controller_helper.checkUserExists(user))
       })
-      it('should return user', function(done) {
-        promise.should.become(user).notify(done)
+      it('should return user', function() {
+        return promise.should.become(user)
       })
     })
 
@@ -21,8 +21,8 @@ describe('session_controller_helper', function() {
         user = null
         promise = session_controller_helper.checkUserExists(user)
       })
-      it('should reject the promise', function(done) {
-        promise.should.be.rejected.notify(done)
+      it('should reject the promise', function() {
+        return promise.should.be.rejected
       })
     })
 
@@ -41,8 +41,8 @@ describe('session_controller_helper', function() {
         session_controller_helper = require('../helpers/session_controller_helper')({ body: { password: password } })
         promise = q(session_controller_helper.checkPassword(user))
       })
-      it('should return user', function(done) {
-        promise.should.become(user).notify(done)
+      it('should return user', function() {
+        return promise.should.become(user)
       })
     })
 
@@ -55,8 +55,8 @@ describe('session_controller_helper', function() {
         session_controller_helper = require('../helpers/session_controller_helper')({ body: { password: password } })
         promise = q(session_controller_helper.checkPassword(user))
       })
-      it('should return user', function(done) {
-        promise.should.be.rejected.notify(done)
+      it('should return user', function() {
+        return promise.should.be.rejected
       })
     })
 
