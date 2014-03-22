@@ -1,12 +1,7 @@
 bcrypt = require('bcrypt')
-q = require('q')
+Q = require('q')
 
 chai = require('chai')
-chaiAsPromised = require("chai-as-promised")
-chai.use(chaiAsPromised)
+chai.use(require("chai-as-promised"))
 expect = chai.expect
 should = chai.should()
-
-curry = require('curry')
-
-profile_helper = require('../../helpers/profile_helper')

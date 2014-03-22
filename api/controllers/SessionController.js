@@ -1,13 +1,22 @@
+var session_service = require('../services/session_service')
+
 module.exports = {
   login: function(req, res) {
-    var h = require('../helpers/session_controller_helper')(req, res)
-    User.findOne({ email: req.body.email })
-      .then(h.checkUserExists)
-      .then(h.checkPassword)
-      .then(h.addUserToSession)
-      .then(h.respondWithUser)
-      .fail(h.respondWithAuthError)
-      .done()
+    session_service.login(req.email, req.password)
+      .then(addUserToSession)
+      .then(respondWithUser)
+      .fail(respondWithError)
+
+    addUserToSession: function(user) {
+      req.session.user = user.toSession()
+      return user
+    },
+    respondWithUser: function(response) {
+      return res.send(200, user)
+    },
+    respondWithError: function(err) {
+      return res.send(err.code || 200, err)
+    }
   },
   logout: function(req, res) {
     req.session.user = null
