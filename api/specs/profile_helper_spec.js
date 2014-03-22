@@ -12,6 +12,7 @@ describe('profile_helper', function() {
       encrypt.should.not.become(plain_text_password).notify(done)
     })
   })
+
   describe('#comparePasswords', function() {
 
     beforeEach(function() {

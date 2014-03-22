@@ -29,6 +29,5 @@ function respondWithUser(res, user) {
 }
 
 function respondWithError(res, err) {
-  console.log(err)
   res.send(err.code || 200, err)
 }
