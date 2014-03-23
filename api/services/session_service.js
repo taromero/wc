@@ -2,8 +2,8 @@ var _ = require('underscore')
 
 module.exports.login = function(email, password) {
   return User.findOne({ email: email })
-          .then(checkUserExists)
-          .then(checkPassword)
+          .then(this.checkUserExists)
+          .then(this.checkPassword)
 }
 
 module.exports.checkUserExists = function(user) {

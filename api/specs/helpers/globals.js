@@ -3,7 +3,7 @@ Q = require('q')
 
 RosieFactory = require('rosie').Factory
 
-proxyquire = require('proxyquire').noCallThru();
+proxyquire = require('proxyquire').noCallThru()
 
 chai = require('chai')
 chai.use(require("chai-as-promised"))
