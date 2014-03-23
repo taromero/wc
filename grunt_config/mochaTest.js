@@ -15,6 +15,7 @@ module.exports = {
     },
     src: [
           'api/specs/helpers/globals.js',
+          'api/specs/integration/helpers/globals.js',
           'api/specs/integration/*_spec.js'
           ]
   }
