@@ -24,9 +24,9 @@
         <td>{{ user.name }} - {{ user.surname }}</td>
         <td>{{ user.address }}</td>
         <td>{{ user.phone }}</td>
-        <td>{{ user.birth }}</td>
-        <td>{{ activity.createdAt }}</td>
-        <td>{{ activity.updatedAt }}</td>
+        <td>{{ user.birth_date | date:'MM-dd-yyyy' }}</td>
+        <td>{{ user.createdAt | date:'MM-dd-yyyy' }}</td>
+        <td>{{ user.updatedAt | date:'MM-dd-yyyy' }}</td>
         <td>
           <p>
             <a class='btn btn-primary' ui-sref="user_edit({ id: user.id })">Edit</a>
