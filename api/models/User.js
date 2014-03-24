@@ -1,4 +1,5 @@
 var profile_helper = require('../helpers/profile_helper')
+var Q = require('q')
 
 module.exports = {
 
@@ -38,7 +39,7 @@ module.exports = {
       attrs.password = encrypted_password
     }).then(function checkRole() {
       if(['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT'].indexOf(attrs.role) == -1) {
-        return q.reject(new Error('bad role selection'))
+        return Q.reject(new Error('bad role selection'))
       }
     })
     .catch(function(err) {

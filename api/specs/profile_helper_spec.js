@@ -1,3 +1,5 @@
+var profile_helper = require('../helpers/profile_helper')
+
 describe('profile_helper', function() {
   var plain_text_password, attrs
 
@@ -10,6 +12,7 @@ describe('profile_helper', function() {
       encrypt.should.not.become(plain_text_password).notify(done)
     })
   })
+
   describe('#comparePasswords', function() {
 
     beforeEach(function() {
