@@ -1,12 +1,12 @@
 describe('session_controller', function() {
 
-  var spec_init_promise
+  var create_context_promise, agent
 
-  before(function() {
-    spec_init_promise = liftSails()
-  })
-  after(function() {
-    aux.lower()
+  beforeEach(function() {
+    create_context_promise = sails_lift_promise
+      .then(connectToDB)
+      .then(clearDB)
+      .then(createUser)
   })
 
   describe('successful login', function() {
@@ -14,17 +14,9 @@ describe('session_controller', function() {
     var user
 
     beforeEach(function(done) {
-      spec_init_promise
-        .then(connectToDB)
-        .then(clearDB)
-        .then(function() {
-          return User.create({ email: 'canotto90@gmail.com', password: 'p', role: 'STUDENT' })
-        })
+      create_context_promise
         .then(makeSuccessfulLoginPost)
-        .then(closeDBConnection)
-        .done(function() {
-          done()
-        })
+        .then(function() { done() })
     })
 
     it('should return 200', function(done) {
@@ -37,47 +29,38 @@ describe('session_controller', function() {
       }).end(done)
     })
 
-    // it('should return user', function() {
+  })
 
-    // })
+  describe('unsuccessful login', function() {
+
+    beforeEach(function(done) {
+      create_context_promise
+        .then(makeUnsuccessfulLoginPost)
+        .then(function() { done() })
+    })
+
+    it('should return 400', function(done) {
+      agent.expect(400, done)
+    })
 
   })
 
-  // describe('unsuccessful login', function() {
+  function createUser() {
+    return User.create({ email: 'canotto90@gmail.com', password: 'password', role: 'STUDENT' })
+  }
 
-  //   var spec_init_promise
+  function makeSuccessfulLoginPost() {
+    agent = request(app)
+            .post('/login')
+            .send({ email: 'canotto90@gmail.com', password: 'password'})
+    return agent
+  }
 
-  //   beforeEach(function() {
-  //     liftSails()
-  //       .then(connectToDB)
-  //       .then(clearDB)
-  //       .then(createUser)
-  //       .then(makeUnsuccessfulLoginPost)
-  //       .then(closeDBConnection)
-  //   })
-
-  //   it('should return 400', function() {
-  //     spec_init_promise.then(function() {
-  //       req.expect(400)
-  //     }).fail(console.log)
-  //   })
-
-  // })
+  function makeUnsuccessfulLoginPost() {
+    agent = request(app)
+            .post('/login')
+            .send({ email: 'canotto90@gmail.com', password: 'wrong_password'})
+    return agent
+  }
 
 })
-
-function makeSuccessfulLoginPost() {
-  agent = request(app)
-          .post('/login')
-          .send({ email: 'canotto90@gmail.com', password: 'p'})
-  return agent
-}
-
-function makeUnsuccessfulLoginPost() {
-  var wrong_user_data = user_data
-  wrong_user_data.password = wrong_user_data.password + 'a'
-  agent = request(app)
-          .post('/login')
-          .send(wrong_user_data)
-  return agent
-}

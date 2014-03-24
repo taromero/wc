@@ -6,22 +6,13 @@ connect = require('mongodb').connect
 
 process.env.NODE_ENV = 'test'
 
-closeDBConnection = function() {
-  database.close()
-}
+global.sails_lift_promise = liftSails()
 
 clearDB = function(db) {
-  database = db
   return Q.ninvoke(databaseCleaner, 'clean', db)
 }
 
-plain_text_password = 'password'
-user_data = { email: 'tomas@zauberlabs.com', password: plain_text_password, role: 'STUDENT' }
-createUser = function() {
-  return User.create(user_data)
-}
-
-liftSails = function() {
+function liftSails() {
   return Q.ninvoke(Sails, 'lift', { log: { level: 'error' } })
           .then(function(sails) {
             aux = sails
