@@ -4,15 +4,40 @@ var Q = require('q')
 module.exports = {
 
   attributes: {
-    email: 'email',
-    password: 'string',
-    name: 'string',
-    surname: 'string',
-    gender: 'string',
+    email: {
+      type: 'email',
+      required: true
+    },
+    password: {
+      type: 'string',
+      required: true
+    },
+    name: {
+      type: 'string',
+      required: true
+    },
+    surname: {
+      type: 'string',
+      required: true
+    },
+    gender: {
+      type: 'string',
+      required: true
+    },
     birth_date: 'date',
-    address: 'string',
-    phone: 'integer',
-    role: 'string',
+    address: {
+      type: 'string',
+      required: true
+    },
+    phone: {
+      type: 'string',
+      required: true
+    },
+    role: {
+      type: 'string',
+      required: true,
+      in: ['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT']
+    },
     //Student
     course_id: 'string',
     //Profesor
@@ -37,10 +62,6 @@ module.exports = {
     profile_helper.encrypt(attrs.password)
     .then(function assignEncryptedPasswordToUser(encrypted_password) {
       attrs.password = encrypted_password
-    }).then(function checkRole() {
-      if(['ADMIN', 'PRECEPTOR', 'PROFESSOR', 'STUDENT', 'PARENT'].indexOf(attrs.role) == -1) {
-        return Q.reject(new Error('bad role selection'))
-      }
     })
     .catch(function(err) {
       next(err)
