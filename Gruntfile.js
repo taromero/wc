@@ -21,7 +21,6 @@ module.exports = function (grunt) {
   grunt.initConfig(grunt_config);
 
   registerTask('default')
-  registerTask('mocha')
   registerTask('compileAssets')
   registerTask('linkAssets')
   registerTask('build')
