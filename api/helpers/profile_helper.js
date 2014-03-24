@@ -6,5 +6,9 @@ module.exports.encrypt = function(plain_text) {
 }
 
 module.exports.comparePasswords = function(plain_text_password, encrypted_password) {
-  return Q.ninvoke(bcrypt, 'compare', plain_text_password, encrypted_password)
+  if (plain_text_password && encrypted_password) {
+    return Q.ninvoke(bcrypt, 'compare', plain_text_password, encrypted_password)
+  } else {
+    return Q(false)
+  }
 }

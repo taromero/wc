@@ -31,5 +31,10 @@ describe('profile_helper', function() {
       return compare_different.should.become(false)
     })
 
+    it('should return false for null unencrypted password', function() {
+      var compare_empty = profile_helper.comparePasswords(null, attrs.password)
+      return compare_empty.should.become(false)
+    })
+
   })
 })
