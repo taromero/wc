@@ -6,9 +6,16 @@ var getEnvironmentDB = function() {
       module: 'sails-mongo',
       host     : 'localhost',
       port     : 27017,
-      database : 'test'
+      database : 'wc_dev'
     }
-  } else {
+  } else if (local.environment == 'test') {
+    return {
+      module: 'sails-mongo',
+      host     : 'localhost',
+      port     : 27017,
+      database : 'wc_test'
+    }
+  } else if (local.environment == 'test') {
     return local.production.db
   }
 }

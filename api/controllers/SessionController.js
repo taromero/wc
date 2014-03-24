@@ -29,5 +29,5 @@ function respondWithUser(res, user) {
 }
 
 function respondWithError(res, err) {
-  res.send(err.code || 200, err)
+  res.send(err.code || 500, err)
 }

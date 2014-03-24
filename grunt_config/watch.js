@@ -10,7 +10,9 @@ module.exports = {
     tasks: ['compileAssets', 'linkAssets']
   },
   mocha: {
-    files: ['api/**/*.js'],
-    tasks: ['mocha']
+    unit: {
+      files: ['api/**/*.js'],
+      tasks: ['mocha']
+    }
   }
 }
