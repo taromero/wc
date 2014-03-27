@@ -47,3 +47,4 @@ config/local.js
 www
 *.sublime-project
 *.sublime-workspace
+bower_components

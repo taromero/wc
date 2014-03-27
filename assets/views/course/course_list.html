@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <a class='btn btn-primary' ui-sref="course_create">Create Course</a>
+  </div>
+  <table class='table-striped table-bordered table-hover table-condensed activities-list tablesorter-bootstrap'>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Year</th>
+        <th>Division</th>
+        <th>Preceptor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="course in collection">
+        <td>{{ course.id }}</td>
+        <td>{{ couser.year }}</td>
+        <td>{{ course.division }}</td>
+        <td>{{ course.preceptor }}</td>
+        <td>
+          <p>
+            <a class='btn btn-primary' ui-sref="course_edit({ id: course.id })">Edit</a>
+          </p>
+          <a class='btn btn-danger' ng-click="destroy(course)">Destroy</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

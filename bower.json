@@ -1,0 +1,16 @@
+{
+  "name": "wc",
+  "version": "0.0.0",
+  "appPath": "assets",
+  "dependencies": {
+    "angular": "~1.2.0",
+    "angular-ui-router": "0.2.7",
+    "angular-resource": "1.2.14",
+    "json3": "~3.2.4",
+    "es5-shim": "~2.1.0",
+    "jquery": "2.0.3",
+    "angular-bootstrap": "0.10.0",
+    "bootstrap": "3.1.0",
+    "localforage": "*"
+  }
+}

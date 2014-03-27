@@ -20,7 +20,7 @@ module.exports.routes = {
   //
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': {
-    view: 'home/index'
+    view: 'index'
   }
   , 'post /login': 'SessionController.login'
   , '/logout': 'SessionController.logout'

@@ -11,6 +11,6 @@ module.exports = {
   },
   mocha: {
     files: ['api/**/*.js'],
-    tasks: ['mocha']
+    tasks: ['mochaTest']
   }
 }

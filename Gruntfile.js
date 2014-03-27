@@ -21,10 +21,11 @@ module.exports = function (grunt) {
   grunt.initConfig(grunt_config);
 
   registerTask('default')
-  registerTask('mocha')
   registerTask('compileAssets')
   registerTask('linkAssets')
   registerTask('build')
   registerTask('prod')
+  registerTask('create_sample_data')
+  registerTask('clear_db')
 
 };

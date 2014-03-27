@@ -2,7 +2,7 @@ module.exports = {
 
   attributes: {
 
-  	year: 'integer',
+    year: 'integer',
     division: 'string',
     preceptor_id: 'string'
 
