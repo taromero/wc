@@ -5,7 +5,7 @@ var sampleUser = (function() {
   return function() {
     counter++
     return {
-      email: 'canotto90' + counter + '@gmail.com',
+      email: 'canotto90+' + counter + '@gmail.com',
       password: '123',
       name: 'Tomas',
       surname: 'Romero',

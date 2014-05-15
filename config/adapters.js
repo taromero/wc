@@ -1,15 +1,14 @@
-var local = require('./local')
-
 var getEnvironmentDB = function() {
-  if (local.environment == 'test') {
+  if (process.env.NODE_ENV == 'test') {
     return {
       module: 'sails-mongo',
       host     : 'localhost',
       port     : 27017,
       database : 'wc_test'
     }
-  } else if (local.environment == 'production') {
-    return local.production.db
+  } else if (process.env.NODE_ENV == 'production') {
+  var secrets = require('./secrets')
+    return secrets.production.db
   } else {
     return {
       module: 'sails-mongo',
